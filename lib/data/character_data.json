@@ -1,0 +1,32 @@
+[
+   {
+      "name":"Fabio",
+      "image" : "crewmate-1.png",
+      "color" : "pink",
+      "hexColor" : "#FF00E0"
+   },
+   {
+      "name":"Rocio",
+      "image" : "crewmate-2.png",
+      "color" : "orange",
+      "hexColor" : "#FF5733"
+   },
+   {
+      "name":"Blanca",
+      "image" : "crewmate-3.png",
+      "color" : "green",
+      "hexColor" : "#42EC03"
+   },
+   {
+      "name":"Matias",
+      "image" : "crewmate-4.png",
+      "color" : "blue",
+      "hexColor" : "#0338EC"
+   },
+   {
+      "name":"Celia",
+      "image" : "crewmate-5.png",
+      "color" : "red",
+      "hexColor" : "#EC0303"
+   }
+]

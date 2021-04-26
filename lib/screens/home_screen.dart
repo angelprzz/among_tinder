@@ -1,3 +1,4 @@
+import 'package:among_tinder/screens/swipe_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -8,10 +9,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Swipe',
-    ),
+  static List<Widget> _widgetOptions = <Widget>[
+    SwipeScreen(),
     Text(
       'Favorites',
     ),
