@@ -30,7 +30,7 @@ class SwipeScreen extends StatelessWidget {
                   maxWidth: MediaQuery.of(context).size.width * 0.9,
                   maxHeight: MediaQuery.of(context).size.width * 0.9,
                   minWidth: MediaQuery.of(context).size.width * 0.8,
-                  minHeight: MediaQuery.of(context).size.width * 0.8,
+                  minHeight: MediaQuery.of(context).size.width * 0.7,
                   cardBuilder: (context, index) => Card(
                     color: hexToColor(characters.value[index].hexColor.toString()),
                     child: Stack(

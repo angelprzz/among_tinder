@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Among Tinder"),
+        backgroundColor: Color.fromRGBO(254,60,114, 1),
       ),
       body: Padding(
         padding: EdgeInsets.all(20.0),
