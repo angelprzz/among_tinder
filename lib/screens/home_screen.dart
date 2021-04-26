@@ -1,3 +1,4 @@
+import 'package:among_tinder/screens/favorites_screens.dart';
 import 'package:among_tinder/screens/swipe_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -9,18 +10,16 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    SwipeScreen(),
-    Text(
-      'Favorites',
-    ),
-  ];
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+
+  static List<Widget> _widgetOptions = <Widget>[
+    SwipeScreen(),
+    FavoriteScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +27,11 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text("Among Tinder"),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: Padding(
+        padding: EdgeInsets.all(20.0),
+        child: Center(
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onItemTapped,
@@ -40,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded),
+            icon: Icon(Icons.whatshot),
             label: 'Favorites',
           ),
         ],
