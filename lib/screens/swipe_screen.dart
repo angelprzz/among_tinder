@@ -17,7 +17,8 @@ class SwipeScreen extends ConsumerWidget {
       error: (error, stack) => const Text('Oops'),
       data: (characterState) {
         return Center(
-          child: Column(
+          child: likeChangeNotifier.likes.length + likeChangeNotifier.dislikes.length != characterState.length
+          ? Column(
             children: [
               Container(
                   height: MediaQuery.of(context).size.height * 0.6,
@@ -37,7 +38,9 @@ class SwipeScreen extends ConsumerWidget {
                     ),
                     swipeCompleteCallback: (CardSwipeOrientation orientation, int index) {
                       if(orientation == CardSwipeOrientation.RIGHT) {
-                        likeChangeNotifier.add(characterState[index]);
+                        likeChangeNotifier.like(characterState[index]);
+                      } else if (orientation == CardSwipeOrientation.LEFT) {
+                        likeChangeNotifier.dislike(characterState[index]);
                       }
                     },
                   )
@@ -56,7 +59,8 @@ class SwipeScreen extends ConsumerWidget {
                 ],
               )
             ],
-          ),
+          )
+          : Text("There is no one new around you."),
         );
       },
     );
