@@ -1,22 +1,66 @@
-import 'package:among_tinder/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:among_tinder/screens/swipe_screen.dart';
+import 'package:among_tinder/screens/favorite_screen.dart';
 
-void main() {
-  runApp(ProviderScope(child: MyApp()));
+void main() => runApp(ProviderScope(child: HomeScreen()));
+
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
 }
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+  List<Widget> pageList = [];
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  @override
+  void initState() {
+    pageList.add(SwipeScreen());
+    pageList.add(FavoriteScreen());
+    super.initState();
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  static const Color _tinderPink = Color.fromRGBO(254,60,114, 1);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      color: Color.fromRGBO(254,60,114, 1),
+      debugShowCheckedModeBanner: false,
+      title: 'Among Tinder',
+      color: _tinderPink,
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: HomeScreen(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Among Tinder"),
+          backgroundColor: _tinderPink,
+        ),
+        body: IndexedStack(
+          index: _selectedIndex,
+          children: pageList,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: _onItemTapped,
+          currentIndex: _selectedIndex,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_rounded),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.whatshot),
+              label: 'Favorites',
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

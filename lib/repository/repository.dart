@@ -15,3 +15,11 @@ class Repository {
     return characterList;
   }
 }
+
+class LikesNotifier extends StateNotifier<List<AmongUsCharacter>> {
+  LikesNotifier() : super([]);
+
+  void add(AmongUsCharacter character) {
+    state = [...state, character];
+  }
+}
