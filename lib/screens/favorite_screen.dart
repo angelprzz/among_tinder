@@ -17,7 +17,7 @@ class FavoriteScreen extends ConsumerWidget {
               imageRoute: 'assets/${likeChangeNotifierState.likes[index].image}',
             );
           }
-        ) : Text("No likes given yet")
+        ) : Text("No likes given yet.")
     );
   }
 }
