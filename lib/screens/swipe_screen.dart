@@ -6,45 +6,42 @@ import 'package:among_tinder/providers/providers.dart';
 import 'package:among_tinder/helpers/color_helper.dart';
 import 'package:among_tinder/components/components.dart';
 
-class SwipeScreen extends StatelessWidget {
+class SwipeScreen extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
     CardController controller;
+    final characterState = watch(charactersProvider);
 
-    return Center(
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.6,
-        child: Consumer(
-          builder: (BuildContext context, T Function<T>(ProviderBase<Object, T>) watch, Widget child) {
-            return watch(charactersProvider).map(
-              data: (AsyncData<List<AmongUsCharacter>> characters) {
-                return TinderCard(
-                  controller: controller,
-                  totalNum: characters.data.value.length,
-                  cardBuilder: (context, index) => Card(
-                    color: hexToColor(characters.value[index].hexColor.toString()),
-                    child: Stack(
-                      children: [
-                        CardImage(
-                          imageRoute: 'assets/${characters.data.value[index].image}',
-                        ),
-                        CardName(name: characters.data.value[index].name)
-                      ],
-                    ),
+    return characterState.when(
+      loading: () => const CircularProgressIndicator(),
+      error: (error, stack) => const Text('Oops'),
+      data: (characterState) {
+        return Center(
+          child: Container(
+              height: MediaQuery.of(context).size.height * 0.6,
+              child: TinderCard(
+                controller: controller,
+                totalNum: characterState.length,
+                cardBuilder: (context, index) => Card(
+                  color: hexToColor(characterState[index].hexColor.toString()),
+                  child: Stack(
+                    children: [
+                      CardImage(
+                        imageRoute: 'assets/${characterState[index].image}',
+                      ),
+                      CardName(name: characterState[index].name)
+                    ],
                   ),
-                  swipeCompleteCallback: (CardSwipeOrientation orientation, int index) {
-                    if(orientation == CardSwipeOrientation.RIGHT) {
-                      context.read(likeNotifierProvider).add(characters.value[index]);
-                    }
-                  },
-                );
-              },
-              error: (AsyncError<List<AmongUsCharacter>> value) => Text("Error"),
-              loading: (AsyncLoading<List<AmongUsCharacter>> value) => CircularProgressIndicator()
-            );
-          },
-        ),
-      ),
+                ),
+                swipeCompleteCallback: (CardSwipeOrientation orientation, int index) {
+                  if(orientation == CardSwipeOrientation.RIGHT) {
+                    context.read(likeNotifierProvider).add(characterState[index]);
+                  }
+                },
+              )
+          ),
+        );
+      },
     );
   }
 }
