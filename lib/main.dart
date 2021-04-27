@@ -11,6 +11,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   List<Widget> pageList = [];
+  static const Color _tinderPink = Color.fromRGBO(254,60,114, 1);
 
   @override
   void initState() {
@@ -24,8 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
       _selectedIndex = index;
     });
   }
-
-  static const Color _tinderPink = Color.fromRGBO(254,60,114, 1);
 
   @override
   Widget build(BuildContext context) {
