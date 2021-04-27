@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:among_tinder/repository/repository.dart';
+import 'package:among_tinder/repositories/repository.dart';
 import 'package:among_tinder/model/amongus_character.dart';
 
 final charactersProvider = FutureProvider<List<AmongUsCharacter>>((ref) async {
