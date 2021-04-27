@@ -9,6 +9,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  List<Widget> pageList = [];
+
+  @override
+  void initState() {
+    pageList.add(SwipeScreen());
+    pageList.add(FavoriteScreen());
+    super.initState();
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -28,11 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text("Among Tinder"),
         backgroundColor: Color.fromRGBO(254,60,114, 1),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        ),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: pageList,
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onItemTapped,
