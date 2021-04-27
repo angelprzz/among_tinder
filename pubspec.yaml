@@ -26,3 +26,9 @@ flutter:
     - assets/crewmate-3.png
     - assets/crewmate-4.png
     - assets/crewmate-5.png
+
+
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: fonts/Nunito-Regular.ttf

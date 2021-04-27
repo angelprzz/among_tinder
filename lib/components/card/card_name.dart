@@ -19,8 +19,8 @@ class CardName extends StatelessWidget {
         child: Text(
           name,
           style: TextStyle(
+              fontFamily: 'Nunito',
               fontSize: 30,
-              fontWeight: FontWeight.bold,
               color: Colors.white
           ),
         ),

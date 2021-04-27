@@ -38,7 +38,13 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Among Tinder"),
+          title: Text(
+            "Among Tinder",
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.bold
+            ),
+          ),
           backgroundColor: _tinderPink,
         ),
         body: IndexedStack(
