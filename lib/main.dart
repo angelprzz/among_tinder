@@ -1,7 +1,6 @@
+import 'package:among_tinder/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:among_tinder/screens/swipe_screen.dart';
-import 'package:among_tinder/screens/favorite_screen.dart';
 
 void main() => runApp(ProviderScope(child: HomeScreen()));
 
