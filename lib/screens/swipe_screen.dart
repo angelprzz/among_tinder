@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
-import 'package:among_tinder/model/amongus_character.dart';
 import 'package:among_tinder/providers/providers.dart';
 import 'package:among_tinder/helpers/color_helper.dart';
 import 'package:among_tinder/components/components.dart';
@@ -11,6 +10,7 @@ class SwipeScreen extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     CardController controller;
     final characterState = watch(charactersProvider);
+    final likeChangeNotifier = watch(likeChangeNotifierProvider);
 
     return characterState.when(
       loading: () => const CircularProgressIndicator(),
@@ -35,7 +35,7 @@ class SwipeScreen extends ConsumerWidget {
                 ),
                 swipeCompleteCallback: (CardSwipeOrientation orientation, int index) {
                   if(orientation == CardSwipeOrientation.RIGHT) {
-                    context.read(likeNotifierProvider).add(characterState[index]);
+                    likeChangeNotifier.add(characterState[index]);
                   }
                 },
               )

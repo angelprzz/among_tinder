@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'dart:collection';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:among_tinder/model/amongus_character.dart';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final repositoryProvider = Provider<Repository>((ref) => Repository());
@@ -16,10 +17,13 @@ class Repository {
   }
 }
 
-class LikesNotifier extends StateNotifier<List<AmongUsCharacter>> {
-  LikesNotifier() : super([]);
+class LikeChangeNotifier extends ChangeNotifier{
+  final List<AmongUsCharacter> _likes = [];
+  
+  UnmodifiableListView<AmongUsCharacter> get likes => UnmodifiableListView(_likes);
 
   void add(AmongUsCharacter character) {
-    state = [...state, character];
+    _likes.add(character);
+    notifyListeners();
   }
 }

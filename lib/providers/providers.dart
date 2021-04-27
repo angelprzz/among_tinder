@@ -6,6 +6,6 @@ final charactersProvider = FutureProvider<List<AmongUsCharacter>>((ref) async {
   return ref.read(repositoryProvider).fetchCharactersData();
 });
 
-final likeNotifierProvider = StateNotifierProvider<LikesNotifier, List<AmongUsCharacter>>((ref) {
-  return LikesNotifier();
+final likeChangeNotifierProvider = ChangeNotifierProvider<LikeChangeNotifier>((ref) {
+  return LikeChangeNotifier();
 });
