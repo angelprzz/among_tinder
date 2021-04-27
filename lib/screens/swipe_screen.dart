@@ -17,28 +17,45 @@ class SwipeScreen extends ConsumerWidget {
       error: (error, stack) => const Text('Oops'),
       data: (characterState) {
         return Center(
-          child: Container(
-              height: MediaQuery.of(context).size.height * 0.6,
-              child: TinderCard(
-                controller: controller,
-                totalNum: characterState.length,
-                cardBuilder: (context, index) => Card(
-                  color: hexToColor(characterState[index].hexColor.toString()),
-                  child: Stack(
-                    children: [
-                      CardImage(
-                        imageRoute: 'assets/${characterState[index].image}',
+          child: Column(
+            children: [
+              Container(
+                  height: MediaQuery.of(context).size.height * 0.6,
+                  child: TinderCard(
+                    controller: controller = CardController(),
+                    totalNum: characterState.length,
+                    cardBuilder: (context, index) => Card(
+                      color: hexToColor(characterState[index].hexColor.toString()),
+                      child: Stack(
+                        children: [
+                          CardImage(
+                            imageRoute: 'assets/${characterState[index].image}',
+                          ),
+                          CardName(name: characterState[index].name)
+                        ],
                       ),
-                      CardName(name: characterState[index].name)
-                    ],
+                    ),
+                    swipeCompleteCallback: (CardSwipeOrientation orientation, int index) {
+                      if(orientation == CardSwipeOrientation.RIGHT) {
+                        likeChangeNotifier.add(characterState[index]);
+                      }
+                    },
+                  )
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(
+                    child: Text('Dislike'),
+                    onPressed: () => controller.triggerLeft(),
                   ),
-                ),
-                swipeCompleteCallback: (CardSwipeOrientation orientation, int index) {
-                  if(orientation == CardSwipeOrientation.RIGHT) {
-                    likeChangeNotifier.add(characterState[index]);
-                  }
-                },
+                  ElevatedButton(
+                    child: Text('Like'),
+                    onPressed: () => controller.triggerRight(),
+                  ),
+                ],
               )
+            ],
           ),
         );
       },

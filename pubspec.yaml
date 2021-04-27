@@ -27,7 +27,6 @@ flutter:
     - assets/crewmate-4.png
     - assets/crewmate-5.png
 
-
   fonts:
     - family: Nunito
       fonts:
