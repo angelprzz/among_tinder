@@ -7,6 +7,7 @@ class FavoriteScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final likeChangeNotifierState = watch(likeChangeNotifierProvider);
+
     return Center(
       child: likeChangeNotifierState.likes.length != 0 ?
         ListView.builder(

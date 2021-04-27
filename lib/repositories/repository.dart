@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:among_tinder/model/amongus_character.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:among_tinder/model/amongus_character.dart';
 
 final repositoryProvider = Provider<Repository>((ref) => Repository());
 

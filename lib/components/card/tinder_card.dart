@@ -8,6 +8,8 @@ class TinderCard extends StatelessWidget {
     @required this.totalNum,
     @required this.cardBuilder,
     @required this.swipeCompleteCallback,
+    this.stackNum,
+    this.swipeEdge,
   });
 
   final CardController controller;
@@ -16,7 +18,11 @@ class TinderCard extends StatelessWidget {
 
   final cardBuilder;
 
-  final swipeCompleteCallback;
+  final Function swipeCompleteCallback;
+
+  final int stackNum;
+
+  final double swipeEdge;
 
   @override
   Widget build(BuildContext context) {
