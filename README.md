@@ -1,6 +1,6 @@
 # Among Tinder
 
-Tinder-like app built with Flutter & Riverpod.
+Code assignment for Criptan. Tinder-like app built with Flutter & Riverpod.
 
 ## How to install
 1. Download or clone the project.
